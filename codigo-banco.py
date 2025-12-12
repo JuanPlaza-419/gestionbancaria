@@ -166,6 +166,8 @@ def procesar_cobro_semanal(usuario, data):
     usuario["ult_cobro_banco"] = str(semanas)
 
 def crear_cobro_automatico(usuario, data):
+    dni = input("DNI del usuario a cobrar: ")
+
     destino = None
     i = 0
     while i < len(data) and destino is None:
@@ -176,16 +178,18 @@ def crear_cobro_automatico(usuario, data):
     if destino is None:
         print("No existe ese usuario.")
         return
-        
+
     cantidad = float(input("Cantidad: "))
     rep = int(input("Repeticiones: "))
     hoy = datetime.now().strftime("%Y-%m-%d")
+
     destino["cobradores"].append({
         "origen": usuario["dni"],
         "cantidad": cantidad,
         "prox_fecha": hoy,
         "repeticiones": rep
     })
+
     print("Cobro automático creado.")
 
 def ver_cobradores_activos(usuario):
