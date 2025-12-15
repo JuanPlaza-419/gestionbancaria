@@ -4,6 +4,16 @@ from datetime import datetime, timedelta
 
 BD = "usuarios.json"
 
+def saludo():
+    hora = datetime.now().hour
+
+    if 6 <= hora < 12:
+        return "Buenos días ☀️"
+    elif 12 <= hora < 20:
+        return "Buenas tardes 🌤️"
+    else:
+        return "Buenas noches 🌙"
+
 def cargar_bd():
     if not os.path.exists(BD):
         with open(BD, "w", encoding="utf-8") as f:
@@ -258,6 +268,7 @@ def main():
     salir = False
     while not salir:
         print("\n--- CachabanBank ---")
+        print(saludo())
         print("1. Crear cuenta")
         print("2. Iniciar sesión")
         print("3. Salir")
